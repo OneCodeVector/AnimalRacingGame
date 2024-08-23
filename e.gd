@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	if InWater == 1: WaterTime += (delta * WaterFriction)
 	rotation_degrees += deg_to_rad(TurningSpeed) * delta * Velocity
 	Velocity = clamp(Velocity + (Throttle) - (Friction * sign(Velocity)), -VehicleTopSpeed / GearCount, VehicleTopSpeed / (pow(GearCount, InWater) * clamp(WaterTime, 0, 1)))
-	position += (transform.y * Velocity * delta)
+	move_and_collide(transform.y * Velocity * delta)
 	pass
 
 func _input(event : InputEvent):
